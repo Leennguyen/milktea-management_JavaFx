@@ -1,4 +1,4 @@
-package data.models;
+package com.example.milkteamanagement.data.models;
 
 public class Product {
     public int id;

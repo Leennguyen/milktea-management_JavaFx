@@ -1,23 +1,18 @@
 package com.example.milkteamanagement;
-
-import data.DBConnection;
-import data.models.Product;
+import com.example.milkteamanagement.data.DBConnection;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DBConnection db = new DBConnection();
+//        db.getProducts();
+//        db.insertProduct(new Product("Trà sữa khoai môn", 24000, "https://dulichkhampha24.com/wp-content/uploads/2021/04/tra-sua-ong-tho.jpg"));
+//        db.updateProduct(new Product( 6,"Trà sữa khoai môn trân châu đen",25000,"https://dulichkhampha24.com/wp-content/uploads/2021/04/tra-sua-ong-tho.jpg"));
+//        db.deleteProduct(4);
         db.getProducts();
-//        db.insertProduct(new Product("Matcha đá xay", 24000, "kikiki"));
-//        db.updateProduct(new Product( 3,"Matcha đá xay không bỏ đá",25000,"kakaka"));
-        db.deleteProduct(2);
     }
 
     public static void main(String[] args) {

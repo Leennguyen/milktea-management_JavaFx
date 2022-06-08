@@ -1,7 +1,5 @@
-package data;
-
-import data.models.Product;
-
+package com.example.milkteamanagement.data;
+import com.example.milkteamanagement.data.models.Product;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
