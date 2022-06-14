@@ -25,6 +25,7 @@ public class HomeScreen {
     private void render() {
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
+        root.setHgap(50);
         Button btnCreate = new Button("Create new Milk Tea");
         btnCreate.setOnAction(e -> new CreateOrUpdateMilkTeaScreen(stage));
         root.add(btnCreate, 0,0);

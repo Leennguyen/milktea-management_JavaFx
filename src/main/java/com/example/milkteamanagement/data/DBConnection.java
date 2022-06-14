@@ -11,7 +11,7 @@ public class DBConnection {
     private Connection con;
     public DBConnection() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/linh_management_milkteashop", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/milkteashop", "root", "");
             System.out.println("Successfully !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
