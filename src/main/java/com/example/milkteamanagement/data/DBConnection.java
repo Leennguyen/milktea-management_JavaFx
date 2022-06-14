@@ -1,10 +1,11 @@
 package com.example.milkteamanagement.data;
-import com.example.milkteamanagement.data.models.Product;
+import com.example.milkteamanagement.data.models.MilkTea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
     private Connection con;
@@ -13,29 +14,25 @@ public class DBConnection {
             con = DriverManager.getConnection("jdbc:mysql://localhost/linh_management_milkteashop", "root", "");
             System.out.println("Successfully !");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 //SHOW________________________________________________
-    public ArrayList<Product> getProducts(){
-        ArrayList<Product> list = new ArrayList<>();
-        String sql = "SELECT * FROM products";
-        ResultSet results = null;
+    public List<MilkTea> getMilkTeas(){
+        ArrayList<MilkTea> list = new ArrayList<>();
+        String sql = "SELECT * FROM milkteas";
         try {
-            results = con.prepareStatement(sql).executeQuery();
+            ResultSet results = con.prepareStatement(sql).executeQuery();
             while (results.next()){
-                System.out.println("ID : "+results.getInt("proID"));
-                System.out.println("Name : "+results.getString("proName"));
-                System.out.println("Price : "+results.getFloat("price"));
-                System.out.println("Img : "+results.getString("img"));
-
-                Product pro = new Product(
-                        results.getInt("proID"),
-                        results.getString("proName"),
+                MilkTea milkTea = new MilkTea(
+                        results.getInt("id"),
+                        results.getString("name"),
                         results.getFloat("price"),
-                        results.getString("img")
+                        results.getString("img"),
+                        results.getInt("quantity"),
+                        results.getNString("ingredients")
                 );
-                list.add(pro);
+                list.add(milkTea);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -44,8 +41,9 @@ public class DBConnection {
     }
 
 //INSERT_____________________________________________________
-        public void insertProduct (Product pro) {
-            String sql = "INSERT INTO products (proID, proName, price, img) VALUES ('" + pro.id + "','" + pro.name + "','" + pro.price + "','" + pro.img + "')";
+        public void insertMilkTea(MilkTea milkTea) {
+//            String sql = "INSERT INTO products (proID, proName, price, img) VALUES ('" + milkTea.id + "','" + milkTea.name + "','" + milkTea.price + "','" + milkTea.img + "')";
+            String sql = String.format("INSERT INTO milkteas (name, price, img, quantity, ingredients) VALUES ('%s', %f, '%s', %d, '%s')", milkTea.name, milkTea.price, milkTea.img, milkTea.quantity, milkTea.ingredients);
             try {
                 con.prepareStatement(sql).executeUpdate();
                 System.out.println("Insert successfully !");
@@ -54,8 +52,9 @@ public class DBConnection {
             }
         }
 //UPDATE____________________________________________________
-        public void updateProduct(Product pro){
-        String sql = "UPDATE products SET proName = '"+pro.name+"', price = '"+pro.price+"',img = '"+pro.img+"' WHERE proID ="+pro.id;
+        public void updateMilkTea(MilkTea milkTea){
+//            String sql = "UPDATE products SET proName = '"+milkTea.name+"', price = '"+milkTea.price+"',img = '"+milkTea.img+"' WHERE proID ="+milkTea.id;
+            String sql = String.format("UPDATE milkteas SET name = '%s', price = %f, img = '%s', quantity = %d, ingredients = '%s' WHERE id = %d", milkTea.name, milkTea.price, milkTea.img, milkTea.quantity, milkTea.ingredients, milkTea.id);
             try {
                 con.prepareStatement(sql).executeUpdate();
                 System.out.println("Update successfully !");
@@ -65,8 +64,8 @@ public class DBConnection {
         }
 //DELETE________________________________________________
 
-        public void deleteProduct(int id){
-        String sql = "DELETE FROM products WHERE proID ="+id;
+        public void deleteMilkTea(int id){
+        String sql = String.format("DELETE FROM milkteas WHERE proID = %d", id);
             try {
                 con.prepareStatement(sql).executeUpdate();
                 System.out.println("Delete successfully !");
