@@ -65,7 +65,7 @@ public class DBConnection {
 //DELETE________________________________________________
 
         public void deleteMilkTea(int id){
-        String sql = String.format("DELETE FROM milkteas WHERE proID = %d", id);
+        String sql = String.format("DELETE FROM milkteas WHERE id = %d", id);
             try {
                 con.prepareStatement(sql).executeUpdate();
                 System.out.println("Delete successfully !");
