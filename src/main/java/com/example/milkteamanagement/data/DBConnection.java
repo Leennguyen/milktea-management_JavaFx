@@ -1,5 +1,7 @@
 package com.example.milkteamanagement.data;
 import com.example.milkteamanagement.data.models.MilkTea;
+
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -73,4 +75,9 @@ public class DBConnection {
                 throw new RuntimeException(e);
             }
         }
+    void Image(String url, boolean backgroundLoading) {
+        url = "http://somedomain/images/image.png";
+        backgroundLoading = true;
+
+    }
 }
