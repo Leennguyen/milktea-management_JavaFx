@@ -25,6 +25,7 @@ public class HomeScreen {
     private void render() {
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
+        root.setHgap(50);
         Button btnCreate = new Button("Create new Milk Tea");
         btnCreate.setOnAction(e -> new CreateOrUpdateMilkTeaScreen(stage));
         root.add(btnCreate, 0,0);
@@ -45,6 +46,7 @@ public class HomeScreen {
                 btnDel.setOnAction(e -> {
                     MilkTea milkTea = getTableView().getItems().get(getIndex());
                     db.deleteMilkTea(milkTea.id);
+                    stage.setScene(new HomeScreen(stage).scene);
                 });
                 btnUpdate.setOnAction(e -> {
                     MilkTea milkTea = getTableView().getItems().get(getIndex());

@@ -13,7 +13,7 @@ public class DBConnection {
     private Connection con;
     public DBConnection() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/linh_management_milkteashop", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/milkteashop", "root", "");
             System.out.println("Successfully !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -67,7 +67,7 @@ public class DBConnection {
 //DELETE________________________________________________
 
         public void deleteMilkTea(int id){
-        String sql = String.format("DELETE FROM milkteas WHERE proID = %d", id);
+        String sql = String.format("DELETE FROM milkteas WHERE id = %d", id);
             try {
                 con.prepareStatement(sql).executeUpdate();
                 System.out.println("Delete successfully !");
