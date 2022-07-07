@@ -13,7 +13,7 @@ public class DBConnection {
     private Connection con;
     public DBConnection() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/milkteashop", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/linh_management_milkteashop", "root", "");
             System.out.println("Successfully !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -74,10 +74,5 @@ public class DBConnection {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }
-    void Image(String url, boolean backgroundLoading) {
-        url = "http://somedomain/images/image.png";
-        backgroundLoading = true;
-
     }
 }

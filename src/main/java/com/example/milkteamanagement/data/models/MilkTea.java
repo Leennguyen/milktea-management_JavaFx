@@ -1,5 +1,9 @@
 package com.example.milkteamanagement.data.models;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+//tạo một đối tượng để lưu trữ thông tin trong mảng
 public class MilkTea {
     public int id;
     public String name;
@@ -40,7 +44,17 @@ public class MilkTea {
     public String getImg() {
         return img;
     }
-
+    public ImageView getImageView() {
+        try {
+            var imgView = new ImageView(new Image(this.img));
+            imgView.setFitHeight(100);
+            imgView.setFitWidth(100);
+            return imgView;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     public int getQuantity() {
         return quantity;
     }

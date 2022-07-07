@@ -10,6 +10,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,11 +32,12 @@ public class HomeScreen {
         btnCreate.setOnAction(e -> new CreateOrUpdateMilkTeaScreen(stage));
         root.add(btnCreate, 0,0);
         TableView<MilkTea> table = new TableView<>();
-        table.setMinSize(800, 400);
+        table.setMinSize(1700, 700);
         TableColumn<MilkTea, Integer> idCol = new TableColumn<>("ID");
         TableColumn<MilkTea, String> nameCol = new TableColumn<>("Name");
         TableColumn<MilkTea, Float> priceCol = new TableColumn<>("Price");
         TableColumn<MilkTea, String> imgCol = new TableColumn<>("Image");
+        TableColumn<MilkTea, Void> imgPreviewCol = new TableColumn<>("Preview");
         TableColumn<MilkTea, Integer> quantityCol = new TableColumn<>("Quantity");
         TableColumn<MilkTea, String> ingredientsCol = new TableColumn<>("Description");
         TableColumn<MilkTea, Void> deleteCol = new TableColumn<>("Action");
@@ -67,10 +70,11 @@ public class HomeScreen {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         imgCol.setCellValueFactory(new PropertyValueFactory<>("img"));
+        imgPreviewCol.setCellValueFactory(new PropertyValueFactory<>("imageView"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         ingredientsCol.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
 
-        table.getColumns().addAll(idCol, nameCol, priceCol, imgCol, quantityCol, ingredientsCol, deleteCol);
+        table.getColumns().addAll(idCol, nameCol, priceCol, imgCol,imgPreviewCol, quantityCol, ingredientsCol, deleteCol);
         table.setItems(FXCollections.observableList(db.getMilkTeas()));
 
 
@@ -81,5 +85,7 @@ public class HomeScreen {
     private void show() {
         stage.setScene(scene);
         stage.show();
+        stage.fullScreenProperty();
     }
+
 }
